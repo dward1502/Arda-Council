@@ -11,14 +11,57 @@ soterion:
 
 > 🜏 Soterion: 📜 documentation | owner: HADES | status: active | reviewed: 2026-05-21
 
-#annunimas-council
+# annunimas-council
 
 ## Purpose
-Multi-agent boardroom deliberation and consensus building
+Multi-agent boardroom deliberation and consensus building.
+
+## Vision
+
+`annunimas-council` is the ARDA deliberation layer: it models how specialist
+agents bring evidence, constraints, votes, and dissent into a bounded decision
+process. The goal is not unstructured chat between agents; it is inspectable
+boardroom governance that can produce consensus, record minority objections, and
+hand explicit decisions back to execution surfaces.
 
 ## Architecture
+
+```mermaid
+flowchart TB
+    Agenda[Operator or Queue Agenda] --> Chair[Council Chair]
+    Chair --> Specialists[Specialist Agents]
+    Specialists --> Evidence[Evidence Packets]
+    Evidence --> Deliberation[Structured Deliberation]
+    Deliberation --> Vote[Consensus or Dissent Vote]
+    Vote --> Decision[Council Decision Record]
+    Decision --> HUD[ARDA HUD Boardroom Surface]
+    Decision --> Queue[Task / Contract Queue]
+    Decision --> Audit[Soterion Trace]
+```
+
 ## Key Components
+
+- agenda intake for operator or queue-raised decisions
+- specialist agent positions and evidence packets
+- consensus, dissent, and escalation records
+- decision exports for ARDA HUD and task queues
+
 ## Integration
+
+`annunimas-council` should integrate with ARDA as a governance source, not as a
+background executor. Execution remains gated by task queues, tool policy, and
+audit receipts.
+
+## Getting Started
+
+```bash
+cargo test
+cargo doc --no-deps
+```
+
+Use the crate to define and validate council records before wiring any live
+agent runtime into the boardroom process.
+
 ## Status
 ✅ Active
 
