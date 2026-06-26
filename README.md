@@ -24,7 +24,17 @@ process. The goal is not unstructured chat between agents; it is inspectable
 boardroom governance that can produce consensus, record minority objections, and
 hand explicit decisions back to execution surfaces.
 
-## Architecture
+## Getting Started
+
+```bash
+cargo test
+cargo doc --no-deps
+```
+
+Use the crate to define and validate council records before wiring any live
+agent runtime into the boardroom process.
+
+## Architecture Overview
 
 ```mermaid
 flowchart TB
@@ -39,6 +49,17 @@ flowchart TB
     Decision --> Audit[Soterion Trace]
 ```
 
+## Relationship to ARDA
+
+Council is ARDA's deliberation and governance layer. It should produce bounded
+decision records, dissent, and escalation context for HUD and task queues rather
+than executing background work directly.
+
+## Status
+
+Blueprint-stage Rust crate for multi-agent boardroom records and consensus
+surfaces.
+
 ## Key Components
 
 - agenda intake for operator or queue-raised decisions
@@ -51,19 +72,6 @@ flowchart TB
 `annunimas-council` should integrate with ARDA as a governance source, not as a
 background executor. Execution remains gated by task queues, tool policy, and
 audit receipts.
-
-## Getting Started
-
-```bash
-cargo test
-cargo doc --no-deps
-```
-
-Use the crate to define and validate council records before wiring any live
-agent runtime into the boardroom process.
-
-## Status
-✅ Active
 
 ## See Also
 - [ANNUNIMAS_ROOT_PROTOCOL.md](/var/home/mythos/Annunimas/ANNUNIMAS_ROOT_PROTOCOL.md)
